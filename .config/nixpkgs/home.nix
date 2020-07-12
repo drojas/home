@@ -45,17 +45,20 @@
         $DRY_RUN_CMD git -C "$HOME" init
         echo "local initialized"
 
-        $DRY_RUN_CMD git -C "$HOME" remote add origin gh:drojas/home.git || true
+        $DRY_RUN_CMD git -C "$HOME" remote add origin drojas:home || true
         echo "remote origin set"
 
         $DRY_RUN_CMD git -C "$HOME" config status.showUntrackedFiles no
         echo "config set"
 
-        $DRY_RUN_CMD git -C "$HOME" fetch || true
+        $DRY_RUN_CMD git -C "$HOME" fetch origin master || true
         echo "tree ready"
 
-        $DRY_RUN_CMD git -C "$HOME" checkout || true
+        $DRY_RUN_CMD git -C "$HOME" checkout master || true
         echo "tree synced"
+
+        $DRY_RUN_CMD git -C "$HOME" branch --set-upstream-to=origin/master || true
+        echo "branch tracking set"
       '';
     };
   };
