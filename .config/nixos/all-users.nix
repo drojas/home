@@ -6,6 +6,7 @@ in {
   imports = [
     (builtins.fetchTarball {
       url = "https://github.com/rycee/home-manager/archive/release-20.03.tar.gz";
+      sha256 = "0hgn85yl7gixw1adjfa9nx8axmlpw5y1883lzg3zigknx6ff5hsr";
     } + "/nixos/default.nix")
   ];
   users.extraUsers."${username}" = {
@@ -33,6 +34,6 @@ in {
   };
 
   home-manager.useUserPackages = true;
-  # home-manager.useGlobalPkgs = true;
+  home-manager.useGlobalPkgs = true;
   home-manager.users."${username}" = (import ../nixpkgs/home.nix);
 }

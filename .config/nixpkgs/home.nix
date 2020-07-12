@@ -6,7 +6,7 @@
 }:
 
 {
-  nixpkgs.config  = (import ./config.nix);
+  # nixpkgs.config  = (import ./config.nix);
 
   programs.home-manager.enable = true;
 
@@ -35,7 +35,7 @@
 
     activation = {
       spacemacs = config.lib.dag.entryAfter [ "installPackages" ] ''
-        $DRY_RUN_CMD git clone -b develop gh:syl20bnr/spacemacs.git ~/.config/emacs 2>/dev/null || true
+        $DRY_RUN_CMD git clone -b develop gh:syl20bnr/spacemacs ~/.config/emacs 2>/dev/null || true
         $DRY_RUN_CMD rm -fr ~/.emacs.d.old || true
         $DRY_RUN_CMD mv ~/.emacs.d ~/.emacs.d.old || true
         $DRY_RUN_CMD git -C ~/.config/emacs pull

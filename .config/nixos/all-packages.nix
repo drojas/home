@@ -3,6 +3,7 @@
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+      sha256 = "15lb2x6xr33kwbaahgwz4pf0v494y0blxrja0518mfxsxxwdh1kp";
     }))
   ];
 
@@ -23,7 +24,6 @@
   environment.systemPackages = with pkgs; [
     emacsGit
     vim
-    # git
     brave
   ];
 }
