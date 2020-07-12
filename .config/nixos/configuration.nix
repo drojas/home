@@ -28,33 +28,30 @@
     '';
   };
 
-  systemd.user.services.gnome-fractalart-background =
-  let
-    flags = lib.concatStringsSep " "
-    ([ "--bg-fill" "--no-fehbg" ]);
-  in  {
-    wantedBy = [ "graphical-session.target"  ];
+  systemd.user.services.my-gnome-bg = {
+    wantedBy = [ "graphical-session.target" ];
     after = [ "graphical-session-pre.target" ];
     partOf = [ "graphical-session.target" ];
-    description = "Set random desktop background using FractalArt and feh";
+    description = "Set random desktop background using FractalArt and gsettings";
 
     serviceConfig = with pkgs; {
       Type = "oneshot";
       ExecStart = [
-        "${haskellPackages.FractalArt}/bin/FractalArt --no-bg -f .background-image"
-        "${haskellPackages.FractalArt}/bin/FractalArt --no-bg -f .screensaver-image"
-        "${glib.bin}/bin/gsettings set org.gnome.desktop.background picture-uri '%h/.background-image'"
-        "${glib.bin}/bin/gsettings set org.gnome.desktop.screensaver picture-uri '%h/.screensaver-image'"
+        "${coreutils}/bin/mkdir -p %h/.backgrounds"
+        "${haskellPackages.FractalArt}/bin/FractalArt --no-bg -f %h/.backgrounds/bg-img"
+        "${haskellPackages.FractalArt}/bin/FractalArt --no-bg -f %h/.backgrounds/sc-img"
+        "${glib.bin}/bin/gsettings set org.gnome.desktop.background picture-uri '%h/.backgrounds/bg-img'"
+        "${glib.bin}/bin/gsettings set org.gnome.desktop.screensaver picture-uri '%h/.backgrounds/sc-img'"
       ];
       IOSchedulingClass = "idle";
     };
   };
 
-  systemd.user.timers.gnome-fractalart-background = {
-    description = "Set random desktop background using FractalArt and feh"; 
+  systemd.user.timers.my-gnome-bg = {
+    description = "Set random desktop background using FractalArt and gsettings";
     wantedBy = [ "timers.target" ];
 
-    timerConfig = { 
+    timerConfig = {
       OnUnitActiveSec = "5m";
     };
   };
