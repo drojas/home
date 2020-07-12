@@ -42,17 +42,20 @@
       '';
 
       remote = config.lib.dag.entryAfter [ "installPackages" ] ''
-        $DRY_RUN_CMD git -C "$HOME" status || git -C "$HOME" init || true
-        echo "local set"
+        $DRY_RUN_CMD git -C "$HOME" init
+        echo "local initialized"
 
         $DRY_RUN_CMD git -C "$HOME" remote add origin gh:drojas/home.git || true
-        echo "origin set"
-
-        $DRY_RUN_CMD git -C "$HOME" checkout 2>/dev/null || true
-        echo "tree ready"
+        echo "remote origin set"
 
         $DRY_RUN_CMD git -C "$HOME" config status.showUntrackedFiles no
-        echo "tracking configured"
+        echo "config set"
+
+        $DRY_RUN_CMD git -C "$HOME" fetch || true
+        echo "tree ready"
+
+        $DRY_RUN_CMD git -C "$HOME" checkout || true
+        echo "tree synced"
       '';
     };
   };
