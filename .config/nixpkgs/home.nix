@@ -5,11 +5,25 @@
   ...
 }:
 
+with pkgs;
+
 {
   # nixpkgs.config  = (import ./config.nix);
 
   programs.home-manager.enable = true;
   gtk.theme.name = "Dracula";
+
+  programs.bash = {
+    enable = true;
+    initExtra = ''
+      ${neofetch}/bin/neofetch | ${lolcat}/bin/lolcat
+      ${fortune}/bin/fortune \
+        | ${cowsay}/bin/cowsay \
+        | ${lolcat}/bin/lolcat
+      # sudo kubectl cluster-info | ${lolcat}/bin/lolcat
+      git -C "$HOME" status --porcelain | ${lolcat}/bin/lolcat
+    '';
+  };
 
   programs.git = {
     enable = true;

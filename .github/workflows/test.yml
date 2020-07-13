@@ -21,5 +21,5 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: iso-matebook
-        path: ./config/nixos/result-iso
+        path: ./.config/nixos/result-iso
     - run: echo OK

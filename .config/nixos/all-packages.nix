@@ -34,7 +34,7 @@ in
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
-      sha256 = "0r5y1a1csii5dqya6x94hlplp826vj5s1vnz7lm3k0lwdq5x5qpa";
+      sha256 = "11pkc5mjr7yc6z6lx38vhqlhyia8ii452jaqyzy9m3kpfg255ah9";
     }))
   ];
 
