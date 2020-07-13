@@ -15,5 +15,7 @@ jobs:
         # Only needed for private caches
         #authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: bash ./build-closure.sh
+      working-directory: ./.config/nixos
     - run: bash ./build-iso.sh
+      working-directory: ./.config/nixos
     - run: nix-shell --run "echo OK"
