@@ -19,6 +19,7 @@
     "ext4"
     "ntfs"
   ];
+  boot.loader.systemd-boot.consoleMode = "auto";
   boot.plymouth = {
     enable = true;
     # theme = "fade-in";
