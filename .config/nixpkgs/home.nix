@@ -9,6 +9,7 @@
   # nixpkgs.config  = (import ./config.nix);
 
   programs.home-manager.enable = true;
+  gtk.theme.name = "Dracula";
 
   programs.git = {
     enable = true;
