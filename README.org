@@ -1,0 +1,8 @@
+#+TITLE: Home
+#+AUTHOR: David Rojas Camaggi
+#+DESCRIPTION: My home desktop files
+#+EMAIL: (concat "drojascamaggi" at-sign "gmail.com")
+
+#+BEGIN_abstract
+My home desktop files and code
+#+END_abstract
