@@ -18,4 +18,8 @@ jobs:
       working-directory: ./.config/nixos
     - run: bash ./build-iso.sh
       working-directory: ./.config/nixos
-    - run: nix-shell --run "echo OK"
+    - uses: actions/upload-artifact@master
+      with:
+        name: iso-matebook
+        path: ./config/nixos/result-iso
+    - run: echo OK
