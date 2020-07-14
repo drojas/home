@@ -21,7 +21,7 @@ with pkgs;
         | ${cowsay}/bin/cowsay \
         | ${lolcat}/bin/lolcat
       # sudo kubectl cluster-info | ${lolcat}/bin/lolcat
-      git -C "$HOME" status --porcelain | ${lolcat}/bin/lolcat
+      echo -n " "; git -C "$HOME" status --porcelain | ${lolcat}/bin/lolcat
     '';
   };
 

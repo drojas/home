@@ -53,7 +53,7 @@
 
     timerConfig = {
       OnStartupSec = "1";
-      OnUnitInactiveSec = "5m";
+      OnUnitActiveSec = "5m";
     };
   };
 
